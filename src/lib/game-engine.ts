@@ -5,6 +5,7 @@ import { getStageConfig } from "@/data/evolution-stages";
 import { FOOD_ITEMS } from "@/data/food-items";
 import { PLAY_ACTIVITIES } from "@/data/play-activities";
 import { getMoodFromStats } from "./personality";
+import { getRandomSpecies } from "@/data/species";
 
 export const INITIAL_STATE: GameState = {
   phase: "idle",
@@ -62,12 +63,14 @@ function updateStats(stats: PetStats, changes: Partial<PetStats>): PetStats {
 export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "HATCH": {
+      const species = getRandomSpecies();
       return {
         ...INITIAL_STATE,
         phase: "alive",
         pet: {
           ...INITIAL_STATE.pet,
           name: action.name,
+          species: species.id,
           stage: "baby",
           ageTicks: 10,
           bornAt: Date.now(),

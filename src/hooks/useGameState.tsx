@@ -174,7 +174,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   // Derive personality traits periodically
   useEffect(() => {
     if (!state.pet.alive) return;
-    const newTraits = deriveTraits(state.personality);
+    const newTraits = deriveTraits(state.personality, state.pet.species);
     if (
       JSON.stringify(newTraits) !==
       JSON.stringify(state.personality.dominantTraits)
