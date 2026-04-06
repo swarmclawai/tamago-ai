@@ -195,11 +195,11 @@ body {
 }
 
 @keyframes feedback-pop {
-  0% { transform: translateX(-50%) translateY(4px) scale(0.9); opacity: 0; }
-  20% { transform: translateX(-50%) translateY(0) scale(1.05); opacity: 1; }
-  30% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
-  90% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateX(-50%) translateY(-4px) scale(0.95); opacity: 0; }
+  0% { transform: translateY(4px) scale(0.9); opacity: 0; }
+  20% { transform: translateY(0) scale(1.05); opacity: 1; }
+  30% { transform: translateY(0) scale(1); opacity: 1; }
+  90% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-4px) scale(0.95); opacity: 0; }
 }
 
 .animate-feedback-pop {
