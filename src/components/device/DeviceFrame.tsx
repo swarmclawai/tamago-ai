@@ -13,15 +13,15 @@ export function DeviceFrame({ screen, buttons }: DeviceFrameProps) {
       <div className="relative">
         {/* Outer shell - egg shape */}
         <div
-          className="relative w-[360px] h-[580px] bg-gradient-to-b from-shell-highlight via-shell-primary to-shell-dark rounded-[45%_45%_42%_42%] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_2px_0_rgba(255,255,255,0.3),inset_0_-4px_8px_rgba(0,0,0,0.1)] flex flex-col items-center pt-6 pb-6"
+          className="relative w-[340px] h-[480px] bg-gradient-to-b from-shell-highlight via-shell-primary to-shell-dark rounded-[45%_45%_42%_42%] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_2px_0_rgba(255,255,255,0.3),inset_0_-4px_8px_rgba(0,0,0,0.1)] flex flex-col items-center pt-8 pb-6"
         >
           {/* Brand text */}
-          <div className="text-[8px] tracking-[0.3em] text-shell-dark/60 uppercase mt-12 mb-4">
+          <div className="text-[8px] tracking-[0.3em] text-shell-dark/60 uppercase mb-3">
             Tamago.ai
           </div>
 
           {/* Screen bezel */}
-          <div className="relative w-[280px] h-[260px] bg-[#2a2a2a] rounded-lg p-2 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
+          <div className="relative w-[260px] h-[240px] bg-[#2a2a2a] rounded-lg p-2 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
             {/* LCD screen */}
             <div className="relative w-full h-full bg-lcd-bg rounded overflow-hidden">
               {/* Scanline overlay */}
