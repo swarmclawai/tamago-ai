@@ -262,14 +262,11 @@ export function GameProvider({ children }: { children: ReactNode }) {
               { role: "user", content: message },
             ],
             gameState: {
-              name: state.pet.name,
-              stage: state.pet.stage,
-              stats: state.pet.stats,
-              mood: state.pet.mood,
+              pet: state.pet,
               personality: state.personality,
             },
           }),
-          signal: AbortSignal.timeout(15_000),
+          signal: AbortSignal.timeout(30_000),
         });
 
         if (res.ok) {

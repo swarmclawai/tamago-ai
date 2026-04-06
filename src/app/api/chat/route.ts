@@ -19,9 +19,12 @@ export async function POST(request: NextRequest) {
     // Build system prompt from game state if provided, or use the provided one
     let systemPrompt = body.systemPrompt;
     if (!systemPrompt && body.gameState) {
-      // Construct a minimal GameState for prompt building
+      // The client sends { pet: {...}, personality: {...} }
+      // buildSystemPrompt expects a GameState-shaped object
       const gs = body.gameState as GameState;
-      systemPrompt = buildSystemPrompt(gs);
+      if (gs.pet && gs.personality) {
+        systemPrompt = buildSystemPrompt(gs);
+      }
     }
 
     const messages = [
