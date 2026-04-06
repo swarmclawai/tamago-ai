@@ -13,7 +13,7 @@ export function DeviceFrame({ screen, buttons }: DeviceFrameProps) {
       <div className="relative">
         {/* Outer shell - egg shape */}
         <div
-          className="relative w-[320px] h-[450px] bg-gradient-to-b from-shell-highlight via-shell-primary to-shell-dark rounded-[45%_45%_42%_42%] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_2px_0_rgba(255,255,255,0.3),inset_0_-4px_8px_rgba(0,0,0,0.1)] flex flex-col items-center pt-[95px] pb-4"
+          className="relative w-[320px] h-[450px] bg-gradient-to-b from-shell-highlight via-shell-primary to-shell-dark rounded-[45%_45%_42%_42%] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_2px_0_rgba(255,255,255,0.3),inset_0_-4px_8px_rgba(0,0,0,0.1)] flex flex-col items-center pt-[85px] pb-4"
         >
           {/* Brand text */}
           <div className="text-[8px] tracking-[0.3em] text-shell-dark/60 uppercase mb-3">
