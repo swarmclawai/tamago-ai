@@ -1,26 +1,184 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-pixel: var(--font-pixel);
+  --color-lcd-bg: #9bbc0f;
+  --color-lcd-dark: #0f380f;
+  --color-lcd-mid: #306230;
+  --color-lcd-light: #8bac0f;
+  --color-shell-primary: #e8d5b7;
+  --color-shell-dark: #c4a882;
+  --color-shell-highlight: #f5efe6;
+  --color-btn-a: #ff6b6b;
+  --color-btn-b: #ffd93d;
+  --color-btn-c: #6bcb77;
+  --color-stat-hunger: #ff6b6b;
+  --color-stat-happiness: #ffd93d;
+  --color-stat-energy: #4dabf7;
+  --color-stat-hygiene: #6bcb77;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-pixel), monospace;
+  image-rendering: pixelated;
+}
+
+/* Scanline overlay for LCD screen */
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+}
+
+/* Pixel-perfect borders */
+.pixel-border {
+  box-shadow:
+    -4px 0 0 0 var(--color-lcd-dark),
+    4px 0 0 0 var(--color-lcd-dark),
+    0 -4px 0 0 var(--color-lcd-dark),
+    0 4px 0 0 var(--color-lcd-dark);
+}
+
+/* === ANIMATIONS === */
+
+@keyframes pet-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pet-happy {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-6px) rotate(-3deg); }
+  75% { transform: translateY(-6px) rotate(3deg); }
+}
+
+@keyframes pet-sad {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(2px) rotate(-2deg); }
+}
+
+@keyframes pet-eating {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.05, 0.95); }
+  50% { transform: scale(0.95, 1.05); }
+  75% { transform: scale(1.02, 0.98); }
+}
+
+@keyframes pet-sleeping {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(1px); }
+}
+
+@keyframes pet-sick {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes pet-playing {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(5deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-10px) rotate(-5deg); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-30px); opacity: 0; }
+}
+
+@keyframes egg-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+@keyframes egg-crack {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+@keyframes evolution-flash {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(3) saturate(0); }
+}
+
+@keyframes fade-in-up {
+  0% { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounce-dots {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-4px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 172, 15, 0.4); }
+  50% { box-shadow: 0 0 12px 4px rgba(139, 172, 15, 0.2); }
+}
+
+@keyframes zzz-float {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(15px, -25px) scale(1); opacity: 0; }
+}
+
+@keyframes heart-float {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--float-x, 10px), -25px) scale(1); opacity: 0; }
+}
+
+@keyframes sweat-drop {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+@keyframes button-press {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes angel-rise {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-60px); opacity: 0; }
+}
+
+/* Animation utility classes */
+.animate-pet-idle { animation: pet-idle 2s ease-in-out infinite; }
+.animate-pet-happy { animation: pet-happy 0.6s ease-in-out infinite; }
+.animate-pet-sad { animation: pet-sad 3s ease-in-out infinite; }
+.animate-pet-eating { animation: pet-eating 0.4s ease-in-out; }
+.animate-pet-sleeping { animation: pet-sleeping 4s ease-in-out infinite; }
+.animate-pet-sick { animation: pet-sick 0.5s ease-in-out infinite; }
+.animate-pet-playing { animation: pet-playing 0.5s ease-in-out infinite; }
+.animate-float-up { animation: float-up 1.5s ease-out forwards; }
+.animate-egg-wobble { animation: egg-wobble 0.5s ease-in-out infinite; }
+.animate-egg-crack { animation: egg-crack 0.5s ease-out forwards; }
+.animate-evolution-flash { animation: evolution-flash 0.3s ease-in-out 3; }
+.animate-fade-in-up { animation: fade-in-up 0.3s ease-out; }
+.animate-slide-up { animation: slide-up 0.3s ease-out; }
+.animate-angel-rise { animation: angel-rise 3s ease-out forwards; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+@keyframes stat-critical {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-stat-critical {
+  animation: stat-critical 0.8s ease-in-out infinite;
 }
