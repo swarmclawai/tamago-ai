@@ -162,8 +162,8 @@ function GameScreen() {
           species={state.pet.species}
         />
 
-        {/* Pet area */}
-        <div className="relative flex-1 flex items-center justify-center">
+        {/* Pet area - expanded */}
+        <div className="relative flex-1 flex items-center justify-center min-h-0">
           <ActionFeedback message={state.actionFeedback} />
           <div className="relative">
             <PetSprite
@@ -179,17 +179,17 @@ function GameScreen() {
           </div>
         </div>
 
-        {/* Stats */}
-        <StatBars stats={state.pet.stats} />
-
-        {/* Action bar */}
-        <div className="mt-1">
-          <ActionBar
-            items={currentItems}
-            selectedIndex={selectedIndex}
-            menuState={menuState}
-          />
+        {/* Stats - compact row */}
+        <div className="py-1">
+          <StatBars stats={state.pet.stats} />
         </div>
+
+        {/* Action bar - bottom */}
+        <ActionBar
+          items={currentItems}
+          selectedIndex={selectedIndex}
+          menuState={menuState}
+        />
 
         {/* Chat overlay */}
         {showChat && (
